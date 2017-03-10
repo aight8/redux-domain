@@ -6,7 +6,7 @@ The numbering is only there for orientation - it helpts on bigger documents.
 ## High-level classes
 
 | Name | Links | Description |
-| - | - | - |
+| --- | --- | --- |
 | UserState | [UserState API Documentation](api/UserState.md) |
 | DomainManager | [DomainManager API Documentation](api/DomainManager.md) |
 | Domain | [Domain API Documentation](api/Domain.md) | The ```Domain``` is an **abstract class** which must extended by every domain subclass. It provides the basic functionality for domains. |
