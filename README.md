@@ -4,6 +4,8 @@
 
 [![Dependency Status](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc)
 [![Build Status](https://travis-ci.org/aight8/redux-domain.svg?branch=master)](https://travis-ci.org/aight8/redux-domain)
+[![NPM downloads](https://img.shields.io/npm/dm/redux-domain.svg)](https://npmjs.org/package/redux-domain)
+[![NPM version](https://img.shields.io/npm/v/redux-domain.svg)](https://npmjs.org/package/redux-domain)
 
 ```redux-domain``` provide functionality to work with redux in a DRY manner.
 The top level "User State" contains everything which is needed for a particular user session.
