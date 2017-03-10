@@ -1,0 +1,516 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>UserState · redux-domain</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-api/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Helpers.html" />
+    
+    
+    <link rel="prev" href="DomainManager.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../OVERVIEW.html">
+            
+                <a href="../OVERVIEW.html">
+            
+                    
+                    Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../docs/Summary.md">
+            
+                <span>
+            
+                    
+                    Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="README.md">
+            
+                <span>
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="Domain.html">
+            
+                <a href="Domain.html">
+            
+                    
+                    Domain
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="DomainManager.html">
+            
+                <a href="DomainManager.html">
+            
+                    
+                    DomainManager
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.3" data-path="UserState.html">
+            
+                <a href="UserState.html">
+            
+                    
+                    UserState
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="Helpers.html">
+            
+                <a href="Helpers.html">
+            
+                    
+                    Helpers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../inishts/README.md">
+            
+                <span>
+            
+                    
+                    Insights
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../insights/DomainKey.html">
+            
+                <a href="../insights/DomainKey.html">
+            
+                    
+                    DomainKey
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../insights/DomainMethodDecorators.html">
+            
+                <a href="../insights/DomainMethodDecorators.html">
+            
+                    
+                    DomainMethodDecorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../more/more">
+            
+                <span>
+            
+                    
+                    More
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../more/brainstorm.html">
+            
+                <a href="../more/brainstorm.html">
+            
+                    
+                    Brainstorm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../more/decisions.html">
+            
+                <a href="../more/decisions.html">
+            
+                    
+                    Decisions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../more/todos.html">
+            
+                <a href="../more/todos.html">
+            
+                    
+                    Todos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >UserState</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="userstate">UserState</h1>
+<p>Features:</p>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td><code>constructor(options?: UserStoreOptions)</code></td>
+<td>1. Merges the passed <code>options</code> with the default options.<br>2.</td>
+</tr>
+<tr>
+<td>public <strong>static</strong></td>
+<td><code>createWithDomainManager(domainManager: DomainManager&lt;any&gt;, options?: UserStoreOptions)</code></td>
+<td>Static factory method which creates a new <code>UserState</code> by loading <strong>reducers</strong>/<strong>sagas</strong>/<strong>defaultStates</strong> from the <code>DomainManager</code> (using the collector methods) and merges the generated <code>reducer</code> and <code>rootSaga</code> option to the other <code>options</code> (second argument).<br>Notes: The results of the <code>DomainManager</code> collector functions are transformed with the <code>createReducer</code> and <code>createRootSaga</code> helpers functions to the final <code>reducer</code> and <code>rootSaga</code> option.</td>
+</tr>
+<tr>
+<td>public</td>
+<td><code>startRootSaga()</code></td>
+<td>Start the <code>rootSaga</code> which is passed in the options on the sagaMiddleware. If the saga is already running it throws an exception.</td>
+</tr>
+<tr>
+<td>public <strong>async</strong></td>
+<td><code>finalizeSaga(restart: boolean = true)</code></td>
+<td>Dispatch the built-in <code>END</code> action <em>(redux-saga)</em> and await until all tasks in the root task has completed - by waiting for <code>sagaRootTask.done</code>. Then start a fresh <code>rootSaga</code> automatically if restart param is true <strong>(it is by default)</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="userstoreoptions">UserStoreOptions</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reducer?: Reducer&lt;any&gt;</code></td>
+<td>The <code>final reducer</code> which will passed to the <code>createStore</code> <em>(redux)</em></td>
+<td><code>() =&gt; ({})</code></td>
+</tr>
+<tr>
+<td><code>middlewares?: Middleware[]</code></td>
+<td>Array of middlewares which are mapped with <code>applyMiddleware</code> <em>(redux)</em> and the result is passed to the <strong>enhancer compose function</strong></td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>enhancers?: StoreEnhancer&lt;any&gt;[]</code></td>
+<td>Array of <code>enhancers</code> which will passed to the <strong>enhancer compose function</strong> and the result to <code>createStore</code> <em>(redux)</em></td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>rootSaga?: () =&gt; SagaIterator</code></td>
+<td>The <strong>root saga</strong> which will passed to <code>sagaMiddleware.run(saga: Saga)</code></td>
+<td><code>function*() { }</code></td>
+</tr>
+<tr>
+<td><code>preloadedState?: any</code></td>
+<td>The <code>preloadedState</code> which will passed to the <code>createStore</code> <em>(redux)</em> function</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>reduxDevToolsCompose?: boolean</code></td>
+<td>If <code>true</code>:<br>Uses <code>window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</code> <em>(redux-devtools-extension browser extension)</em> as <strong>enhancer compose function</strong> if exists, otherwise the basic <code>compose</code> <em>(redux)</em></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>reactotron?: boolean</code></td>
+<td>If <code>true</code>:<br>1. Use <code>Reactotron.createStore</code> instead of <code>createStore</code> <em>(redux)</em> to create the redux store.<br>2. Set <code>Reactotron.createSagaMonitor</code> to the <code>sagaMiddleware</code> options (<code>sagaMonitor</code> option property).</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"UserState","level":"1.4.3","depth":2,"next":{"title":"Helpers","level":"1.4.4","depth":2,"path":"api/Helpers.md","ref":"api/Helpers.md","articles":[]},"previous":{"title":"DomainManager","level":"1.4.2","depth":2,"path":"api/DomainManager.md","ref":"api/DomainManager.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-api","edit-link","livereload"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/aight8/redux-domain/"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/aight8/redux-domain/tree/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"redux-domain","gitbook":"3.2"},"file":{"path":"api/UserState.md","mtime":"2017-03-08T11:46:45.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-10T02:38:33.612Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-api/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
