@@ -1,5 +1,7 @@
 # redux-domain
 
+**Manage your redux store, reducers, sagas in domains.**
+
 [![Dependency Status](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc)
 
 ```redux-domain``` provide functionality to work with redux in a DRY manner.
