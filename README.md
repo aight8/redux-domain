@@ -1,8 +1,9 @@
-# redux-domain
+# **redux-domain**
 
-**Manage your redux store, reducers, sagas in domains.**
+## Manage your redux store, reducers, sagas in domains.
 
 [![Dependency Status](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc)
+[![Build Status](https://travis-ci.org/aight8/redux-domain.svg?branch=master)](https://travis-ci.org/aight8/redux-domain)
 
 ```redux-domain``` provide functionality to work with redux in a DRY manner.
 The top level "User State" contains everything which is needed for a particular user session.
