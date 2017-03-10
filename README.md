@@ -25,8 +25,8 @@ See [DomainManager examples](a) / [DomainManager API](a)
 
 ### Domain (abstract class)
 - **defaultState** (for the domain sub state)
-- **\*action methods\*** (use @reduxAction, @sagaAction or @action)
-- **\*selector methods\*** (no decorators, just access ```this.state```/```this.rootState```)
+- *action methods* (use @reduxAction, @sagaAction or @action)
+- *selector methods* (no decorators, just access ```this.state```/```this.rootState```)
 - **dispatch actions**
 - **dispatch actions sync** (ex: for redux-form)
 
@@ -66,19 +66,19 @@ A domain contain following:
   - The defaultState should be Typed
   - Built in action/reducer to reset the domain state to the initial state anytime
 
-### Predefined methods/getters
+### Domain members
 
-|                |                                          |                   |
-| -------------- | ---------------------------------------- | ----------------- |
-| state          | Return the current domain state (**store** required) | getter            |
-| rootState      | Return the current root state (**store** required) | getter            |
-| store          | The redux store object                   | getter/setter     |
-| defaultState   | The default state of the domains store   | **static** object |
-| key            | The key of the domain store              | **static** string |
-| handlers       | Additional handler which should be registerd. | object            |
-| resetStore     | Resets the store to **defaultState**     | function          |
-| getAllReducers | Returns all reducers of this domain      | function          |
-| getAllSagas    | Returns all sagas of this domain         | function          |
+|                |                                          |                    |
+| -------------- | ---------------------------------------- | ------------------ |
+| state          | Return the current domain state (**store** required) | getter |
+| rootState      | Return the current root state (**store** required) | getter   |
+| store          | The redux store object                   | getter/setter      |
+| defaultState   | The default state of the domains store   | **static** object  |
+| key            | The key of the domain store              | **static** string  |
+| handlers       | Additional handler which should be registerd. | object        |
+| resetStore     | Resets the store to **defaultState**     | function           |
+| getAllReducers | Returns all reducers of this domain      | function           |
+| getAllSagas    | Returns all sagas of this domain         | function           |
 
 ### Type of methods
 
