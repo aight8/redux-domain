@@ -1,6 +1,7 @@
 # **Overview** of all exports
 
-{% plantuml %}
+```uml
+@startuml
 class UserState {
   +DomainManager domainManager
 }
@@ -24,7 +25,8 @@ class Domain {
 }
 DomainManager -right-|> Domain : has many
 UserState -right-|> DomainManager : has one
-{% endplantuml %}
+@enduml
+```
 
 This is an overview of all ```exports``` of ```redux-domain```
 The numbering is only there for orientation - it helpts on bigger documents.
