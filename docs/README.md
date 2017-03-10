@@ -1,4 +1,4 @@
-## Current situation:
+# Current situation
 
 Traditionally you have to create:
 - Action type constant

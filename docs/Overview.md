@@ -1,5 +1,31 @@
 # **Overview** of all exports
 
+{% plantuml %}
+class UserState {
+  +DomainManager domainManager
+}
+class DomainManager {
+  +KeyDomainMap domains
+  +Store store
+  +any state
+  +constructor(KeyDomainMap domains)
+  +getReducers()
+  +getSagas()
+  +resetAllStates()
+}
+class Domain {
+  +Store store
+  +any state
+  +any rootState
+  +constructor()
+  +getAllReducers(): ActionReducerMap
+  +getAllSagas(): ActionSagaMap
+  +resetStore(): void
+}
+DomainManager -right-|> Domain : has many
+UserState -right-|> DomainManager : has one
+{% endplantuml %}
+
 This is an overview of all ```exports``` of ```redux-domain```
 The numbering is only there for orientation - it helpts on bigger documents.
 
@@ -7,9 +33,9 @@ The numbering is only there for orientation - it helpts on bigger documents.
 
 | Name | Links | Description |
 | --- | --- | --- |
-| UserState | [UserState API Documentation](api/UserState.md) |
-| DomainManager | [DomainManager API Documentation](api/DomainManager.md) |
-| Domain | [Domain API Documentation](api/Domain.md) | The ```Domain``` is an **abstract class** which must extended by every domain subclass. It provides the basic functionality for domains. |
+| UserState | [UserState API](api/UserState.md) | |
+| DomainManager | [DomainManager API](api/DomainManager.md) | It receives all implemented domains and has following job<br>1. set the **store** and **key** on all domains<br>2. collect **reducers** and **sagas** from all domains. And of course it provides a public property ```domains``` which contains all the domains. |
+| Domain | [Domain API](api/Domain.md) | The ```Domain``` is an **abstract class** which must extended by any domain subclasses. |
 
 1. UserState
 3. DomainManager

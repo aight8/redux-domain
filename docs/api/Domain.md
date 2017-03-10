@@ -1,3 +1,7 @@
+---
+description: This is a short description of my page
+---
+
 # Domain
 
 The ```Domain``` is an **abstract class** which must extended by every domain subclass.

@@ -1,5 +1,3 @@
-
-
 ## Todos
 
 - how you can use the action method of another domain in sagas put?

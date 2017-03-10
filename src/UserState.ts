@@ -59,7 +59,7 @@ export default class UserStore<DM extends DomainManager<any, any>> {
 
     constructor(
         private options?: UserStoreOptions,
-        private domainManager?: DM
+        public readonly domainManager?: DM
     ) {
         const defaultOptions: UserStoreOptions = {
             reducer: () => ({}),

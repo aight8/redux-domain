@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:aight8/redux-domain.git"
+    "url": "https://github.com/aight8/redux-domain"
   },
   "author": "Sebastian Fekete <s.fekete@ggaweb.ch>",
   "license": "MIT",

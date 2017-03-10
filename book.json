@@ -2,7 +2,15 @@
   "gitbook": "3.2",
   "title": "redux-domain",
   "root": "docs",
-  "plugins": ["theme-api", "edit-link"],
+  "plugins": [
+    "theme-api",
+    "edit-link",
+    "expandable-chapters",
+    "codesnippet",
+    "puml",
+    "hints",
+    "-fontsettings"
+  ],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/aight8/redux-domain/tree/master",
@@ -13,7 +21,7 @@
     },
     "theme-api": {
       "theme": "dark",
-      "split": true
+      "split": false
     }
   }
 }
