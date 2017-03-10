@@ -6,7 +6,7 @@ It provides the basic functionality for domains.
 ## Methods
 
 | Prefix | Method | Description |
-| - | - | - |
+| --- | --- | --- |
 | public | ```constructor()``` | No parameters. |
 | public | ```getAllReducers(): ActionReducerMap``` | This method can be used to get all reducers of the domain. It is called by the DomainManager on all domain instances.<br>*Notes: Beside of the own reducers one additional reducer is added: ```'@@' + this.key + '/RESET'``` - this reducer is used by ```resetStore``` and resets the store to the specified ```defaultState```* |
 | public | ```getAllSagas(): ActionSagaMap``` | This method can be used to get all sagas of the domain. It is called by the DomainManager on all domain instances. |
@@ -15,7 +15,7 @@ It provides the basic functionality for domains.
 ## Properties
 
 | Prefix | Property name | Description |
-| - | - | - |
+| --- | --- | --- |
 | static public | ```key``` | The key is the property under which the **domain state** is stored in the **redux store state**. You don't have to set this if you use the **DomainManager**, otherwise it overrides the **domain key** which is defined in the **DomainManager** (don't know any use case for that).<br>*Notes: It represents the key in ```combineReducers({ <key>: <reducer>})```* |
 | public | ```defaultState``` | The **defaultState** is the initial domain state in the redux store. This should be passed to ```handleActions({ <actionType>: <reducer>}, <initialState>)```. |
 | public | ```store``` | The store which is used to **dispatch actions** and **access the store state**.<br>*Notes: The **DomainManager** sets this property automatically if the **store property** is set there. To be more specific: It sets a getter property which points to it's own store property. The store normally never changes during lifetime but it is implemented this way just because it feels cleaner.* |
@@ -26,7 +26,7 @@ It provides the basic functionality for domains.
 ## Method decorators
 
 | Decorator | Description |
-| - | - |
+| --- | --- |
 | ```action<T>(actionType: string):ActionInterfaceCreator``` | Wraps the **action method**, arguments stays the same but the method becomes an **ActionInterface**. The decorated method returns one of: 1. Any value which becomes the payload<br>2. ```return Action(payload, meta, error)``` which allows it to set more than the payload. The ```type``` is set automatically.<br>If you use **Typescript or Flow** you should **always** return with ```Action``` because it mocks the ```ActionInterface``` as workaround - until flow/ts does not support method signature overriding. Otherwise you must cast the return value - this is ugly or you can forget it. |
 | ```sagaAction<T>(actionType: string, saga: Saga): T``` | ```sagaAction``` decorated an **action method**.<br>It defines **an action type** and a **saga** which handles it.<br>This is a shortcut of using the ```@action``` and ```@saga``` decorator together and is the recommended usage. |
 | ```reducerAction<T>(actionType: string, reducer: SmartReducer):T``` | ```reducerAction``` decorates an **action method**.<br>It defines **an UNIQUE action type** and a **reducer** which handles it.<br>This is a shortcut of using the ```@action``` and ```@reducer``` decorator together and is the recommended usage. |
@@ -36,7 +36,7 @@ It provides the basic functionality for domains.
 ## Additional relevant classes/functions
 
 | Name | Description |
-| - | - |
+| --- | --- |
 | ```Action(payload?, meta?, error?)``` | A function which creates a ```ActionInterfaceMockAction``` object and can be returned by an action method. See the ```@action``` decorator to understand why to use it. |
 
 ## Types
