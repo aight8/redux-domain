@@ -3,6 +3,12 @@
   "title": "redux-domain",
   "root": "docs",
   "plugins": [
+    "theme-api",
+    "edit-link",
+    "expandable-chapters",
+    "codesnippet",
+    "local-plantuml",
+    "hints",
     "-fontsettings"
   ],
   "pluginsConfig": {

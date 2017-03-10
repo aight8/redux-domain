@@ -1,23 +1,38 @@
 # **Overview** of all exports
 
-```uml
+{% plantuml %}
 @startuml
+
+skinparam dpi 300
+skinparam shadowing false
+
+skinparam usecase {
+	arrowColor #333
+	arrowFontColor #333
+    arrowFontSize 10
+    arrowThickness 2
+}
+
+skinparam stereotypeCBackgroundColor #FAFAFA
+skinparam classBackgroundColor #FFF
+skinparam classBorderColor #333
+
 class UserState {
-  +DomainManager domainManager
+  +domainManager: DomainManager
 }
 class DomainManager {
-  +KeyDomainMap domains
-  +Store store
-  +any state
+  +domains: KeyDomainMap
+  +store: Store
+  +state: any
   +constructor(KeyDomainMap domains)
   +getReducers()
   +getSagas()
   +resetAllStates()
 }
 class Domain {
-  +Store store
-  +any state
-  +any rootState
+  +store: Store
+  +state: any
+  +rootState: any
   +constructor()
   +getAllReducers(): ActionReducerMap
   +getAllSagas(): ActionSagaMap
@@ -26,7 +41,7 @@ class Domain {
 DomainManager -right-|> Domain : has many
 UserState -right-|> DomainManager : has one
 @enduml
-```
+{% endplantuml %}
 
 This is an overview of all ```exports``` of ```redux-domain```
 The numbering is only there for orientation - it helpts on bigger documents.
