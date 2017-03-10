@@ -15,5 +15,5 @@
   * [Brainstorm](more/brainstorm.md)
   * [Decisions](more/decisions.md)
   * [Todos](more/todos.md)
-* Test
+* [Test](test.md)
 
