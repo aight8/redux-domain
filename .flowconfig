@@ -1,0 +1,16 @@
+[ignore]
+.*/node_modules/babel-plugin-flow-runtime
+.*/node_modules/babel-runtime
+.*/node_modules/flow-runtime
+
+[libs]
+<PROJECT_ROOT>/flow-typed/
+
+[options]
+traces=3
+module.ignore_non_literal_requires=true
+unsafe.enable_getters_and_setters=true
+esproposal.decorators=ignore
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+munge_underscores=true
