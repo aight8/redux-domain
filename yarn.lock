@@ -77,8 +77,8 @@
     redux "^3.6.0"
 
 "@types/react@*", "@types/react@^15.0.13":
-  version "15.0.14"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.14.tgz#07a739b20b0d4cf946f52444d3c40a94d4a234b1"
+  version "15.0.15"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.15.tgz#c386d6906177c5ddaa5804e7f215010d77c33caf"
 
 "@types/redux-actions@^1.2.3":
   version "1.2.3"

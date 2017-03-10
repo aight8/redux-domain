@@ -1,6 +1,8 @@
 # redux-domain
 
-Redux domain provide functionality to work with redux in a DRY manner.
+[![Dependency Status](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c1f4746d852a00129065cc)
+
+```redux-domain``` provide functionality to work with redux in a DRY manner.
 The top level "User State" contains everything which is needed for a particular user session.
 Because it is an new object it can be used on client side and server side.
 
