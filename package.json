@@ -25,7 +25,10 @@
     "url": "https://github.com/aight8/redux-domain/issues"
   },
   "scripts": {
-    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./test/**.ts"
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./test/**.ts",
+    "docs:clear": "rimraf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "gitbook build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -91,6 +94,7 @@
     "redux-saga": "^0.14.3",
     "reflect-metadata": "^0.1.9",
     "reselect": "^2.5.4",
+    "rimraf": "^2.6.1",
     "socket.io-client": "^1.7.3",
     "source-map-support": "^0.4.11",
     "ts-node": "^2.1.0",

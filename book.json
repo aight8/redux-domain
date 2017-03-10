@@ -1,0 +1,19 @@
+{
+  "gitbook": "3.2",
+  "title": "redux-domain",
+  "root": "docs",
+  "plugins": ["theme-api", "edit-link"],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/aight8/redux-domain/tree/master",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/aight8/redux-domain/"
+    },
+    "theme-api": {
+      "theme": "dark",
+      "split": true
+    }
+  }
+}
