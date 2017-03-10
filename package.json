@@ -25,12 +25,7 @@
     "url": "https://github.com/aight8/redux-domain/issues"
   },
   "scripts": {
-    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./spec/**.ts",
-    "dev": "webpack",
-    "test2": "ts-node -F -L ./test/index.tsx",
-    "test3": "babel-node ./test/test.tsx",
-    "TMP_": " --compilerOptions '{\"module\":\"commonjs\", \"paths\":\"reactotron-react-js\":[\"kaka\"]}'",
-    "_TMP": " --eval 'require(\"pretty-error\").start()' --require 'source-map-support/register'"
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./test/**.ts"
   },
   "dependencies": {},
   "devDependencies": {
