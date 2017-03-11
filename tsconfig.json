@@ -10,8 +10,8 @@
         "types": [
             "reflect-metadata"
         ],
+        "declaration": true,
         "allowSyntheticDefaultImports": true,
-        "allowJs": true,
         "baseUrl": "./src",
         "sourceMap": true,
         "module": "commonjs",
