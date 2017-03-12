@@ -1,6 +1,7 @@
 import createSagaFork from './createSagaFork'
+import ActionSagaDefinition from '../types/ActionSagaDefinition'
 import ActionSagaDefinitions from '../types/ActionSagaDefinitions'
-import { Effect, SagaIterator } from 'redux-saga'
+import { Effect, SagaIterator, effects } from 'redux-saga'
 import Saga from '../types/Saga'
 
 export default (sagas: ActionSagaDefinitions, additionalForks?: SagaIterator[]) => {

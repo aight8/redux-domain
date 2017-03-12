@@ -9,11 +9,10 @@ import ActionSagaDefinitions from './types/ActionSagaDefinitions'
 import KeyDomainMap from './types/KeyDomainMap'
 import createBadUsageError from './errors/createBadUsageError'
 
-type RootState<T extends KeyDomainMap> = {
+export type RootState<T extends KeyDomainMap> = {
   [K in keyof T]: T[K]['state'];
 }
 
-//  {[K in keyof T]: T[K]['state']}
 export default class DomainManager<T extends KeyDomainMap, RS extends RootState<T>> {
   store: Store<any>;
 
@@ -70,7 +69,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Collector method: Return all default states from all domains
    */
-  getDefaultStates() {
+  getDefaultStates(): DomainKeyDefaultStateMap {
     let domainDefaultStates: DomainKeyDefaultStateMap = {};
 
     for (let domainKey in this.domains) {
@@ -84,7 +83,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Collector method: Return all sagas from all domains
    */
-  getSagas() {
+  getSagas(): ActionSagaDefinitions {
     let actionSagaDefinitions: ActionSagaDefinitions = [];
 
     for (let domainKey in this.domains) {

@@ -1,4 +1,4 @@
-import { ReducersMapObject } from 'redux'
+import { ReducersMapObject, Action } from 'redux'
 import { handleActions } from 'redux-actions'
 import DomainKeyActionReducerMap from '../types/DomainKeyActionReducerMap'
 import DomainKeyDefaultStateMap from '../types/DomainKeyDefaultStateMap'

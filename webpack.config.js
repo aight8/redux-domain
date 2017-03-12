@@ -1,8 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  watch: true,
+  /*plugins: [
+    new UglifyJSPlugin(),
+  ],*/
   devtool: 'source-map',
   context: __dirname,
   entry: {
@@ -17,16 +20,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-      },
-      {
         test: /\.ts$/,
         loader: 'awesome-typescript-loader',
         options: {
-          //silent: true,
-          //useTranspileModule: true,
-          useBabel: true,
+          useTranspileModule: true,
+          //useBabel: true,
+          //useCache: true,
         },
       },
     ],

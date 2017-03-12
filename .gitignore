@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 gitbook
 _book
+.awcache
+es

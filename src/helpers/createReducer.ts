@@ -1,7 +1,8 @@
-import { combineReducers, ReducersMapObject } from 'redux'
+import { combineReducers, ReducersMapObject, Action } from 'redux'
 import { handleActions } from 'redux-actions'
 import DomainKeyActionReducerMap from '../types/DomainKeyActionReducerMap'
 import DomainKeyDefaultStateMap from '../types/DomainKeyDefaultStateMap'
+import { FluxStandardAction } from 'flux-standard-action'
 
 export default (
   domainActionReducerMap: DomainKeyActionReducerMap,
