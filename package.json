@@ -27,10 +27,11 @@
     "url": "https://github.com/aight8/redux-domain/issues"
   },
   "scripts": {
-    "build": "yarn build:es && yarn generate:dts",
+    "build": "yarn build:es && yarn generate:dts && yarn docs",
     "build:es": "rimraf es && tsc --module es6",
     "generate:dts": "dts-generator --name redux-domain --project . --out type-definitions/redux-domain.d.ts",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./test/**.ts",
+    "docs": "yarn docs:clear && yarn docs:prepare && yarn docs:build",
     "docs:clear": "rimraf _book",
     "docs:prepare": "gitbook install",
     "docs:build": "gitbook build"

@@ -5,7 +5,6 @@
   "plugins": [
     "theme-api",
     "edit-link",
-    "expandable-chapters",
     "codesnippet",
     "local-plantuml",
     "hints",
