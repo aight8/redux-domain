@@ -1,4 +1,4 @@
-import Qs from 'Qs'
+import Qs from 'qs'
 import {
     AxiosError,
     AxiosInstance,
