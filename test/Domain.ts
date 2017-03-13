@@ -11,6 +11,7 @@ import createRootSaga from '../src/helpers/createRootSaga'
 import ActionInterface from '../src/models/ActionInterface'
 import Action, { ActionInterfaceMockAction } from '../src/models/ActionInterfaceMockAction'
 import { default as createSagaMiddleware } from 'redux-saga'
+import { createSelectorCreator, createSelector, Selector, defaultMemoize } from 'reselect'
 
 chai.should();
 
@@ -232,4 +233,18 @@ describe('Domain instance (with store)', function() {
     it('can reset the store with resetStore', function() {
         domainA.resetStore();
     });
+    /*it('blaaa', function() {
+        const r1 = domainA.getAvgAge({ ids: [1, 2, 3] });
+        console.log('r1 (v1)', r1);
+        const r2 = domainA.getAvgAge({ ids: [1, 2, 3] });
+        console.log('r2 (v1)', r2);
+        const r3 = domainA.getAvgAge({ ids: [1, 2, 3] });
+        console.log('r3 (v1)', r3);
+        const r4 = domainA.getAvgAge({ ids: [1, 2, 3] });
+        console.log('r4 (v1)', r4);
+        const r5 = domainA.getAvgAge({ ids: [1, 2, 3, 4, 5] });
+        console.log('r5 (v2)', r4);
+        const r6 = domainA.getAvgAge({ ids: [1, 2, 3] });
+        console.log('r6 (v1)', r6);
+    });*/
 });
