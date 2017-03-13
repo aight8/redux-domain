@@ -1,8 +1,3 @@
-declare module 'debug/src/node' {
-    const val: any;
-    export default val;
-}
-
 declare var IS_BROWSER: boolean;
 declare var Reactotron: any;
 declare module 'redux-domain/decorators/internal/isGenerator' {
@@ -130,11 +125,6 @@ declare module 'redux-domain/DomainManager' {
 	    getDefaultStates(): DomainKeyDefaultStateMap;
 	    getSagas(): ActionSagaDefinitions;
 	}
-
-}
-declare module 'redux-domain/emptyObject' {
-	 const val: any;
-	export default val;
 
 }
 declare module 'redux-domain/models/ActionInterface' {
@@ -288,14 +278,6 @@ declare module 'redux-domain/api-request-pool/errors/base/RequestError' {
 	}
 
 }
-declare module 'redux-domain/api-request-pool/errors/WrappedError' {
-	export default class WrappedError {
-	    originalError: Error;
-	    handled: boolean;
-	    constructor(originalError: Error, handled: boolean);
-	}
-
-}
 declare module 'redux-domain/api-request-pool/errors/ApiError' {
 	import RequestError from 'redux-domain/api-request-pool/errors/base/RequestError';
 	export default class ApiError extends RequestError {
@@ -384,31 +366,33 @@ declare module 'redux-domain/api-request-pool/ApiRequestPool' {
 	        [headerName: string]: any;
 	    };
 	}
-	export type ErrorHandler = (err: RequestError) => boolean;
+	export type ErrorHandler = (err: RequestError) => true | Error | void;
 	export type LogHandler = (request: Request, response: Response, duration: number) => void;
 	export type ApiRequestPoolOptions = {
 	    baseURL?: string;
+	    timeout?: number;
+	    validateStatus?: (status: number) => boolean;
+	    maxRedirects?: number;
 	    errorHandler?: ErrorHandler;
 	    logHandler?: LogHandler;
-	    timeout?: number;
 	    nodeRequest?: any;
-	};
-	export type ApiRequestOptions = {
-	    cancelPrev?: boolean;
 	    uniqueRequestHasher?: (req: {
 	        method: METHOD;
 	        url: string;
 	        rawData: any;
 	    }) => string;
 	};
+	export type ApiRequestOptions = {
+	    cancelPrev?: boolean;
+	};
 	export default class ApiRequestPool {
+	    static options: ApiRequestPoolOptions;
 	    private options;
 	    private axios;
 	    private cancelTokens;
-	    constructor(options?: ApiRequestPoolOptions);
-	    private throwWrappedError(requestError);
-	    private throwNewError(type, innerError?, response?);
-	    protected request(method: METHOD, url: string, rawData?: any, options?: ApiRequestOptions): Promise<any>;
+	    constructor(options: ApiRequestPoolOptions);
+	    private throwRequestError(type, innerError?, response?);
+	    protected request<T>(method: METHOD, url: string, rawData?: any, options?: ApiRequestOptions): Promise<{}>;
 	    private innerRequest(method, url, rawData?, options?);
 	}
 

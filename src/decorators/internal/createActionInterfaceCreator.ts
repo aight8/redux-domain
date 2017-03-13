@@ -23,15 +23,15 @@ function errorDispatcher() {
  * @param methodReturnValue The return value of the action method
  */
 function buildAction(actionType: string, methodReturnValue: any): FluxStandardAction<any, any> {
-  let payload = null;
-  let meta = null;
-  let error = null;
+  let payload: any = null;
+  let meta: any = null;
+  let error: boolean = false;
 
   if (methodReturnValue instanceof ActionInterfaceMockAction) {
     // If action method returns Action(payload?, meta?, error?) then take props from there
     payload = methodReturnValue.action.payload || null;
     meta = methodReturnValue.action.meta || null;
-    error = methodReturnValue.action.error || null;
+    error = methodReturnValue.action.error || false;
   } else {
     payload = methodReturnValue;
   }

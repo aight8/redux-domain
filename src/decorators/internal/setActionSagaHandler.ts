@@ -2,7 +2,7 @@ import Saga from '../../types/Saga'
 import { FSA } from 'flux-standard-action'
 import SmartSagaFootprint from '../../types/SmartSagaFootprint'
 
-export default (target: any, actionType: string, sagaGeneratorFunction: SmartSagaFootprint<any>) => {
+export default (target: any, actionType: string, sagaGeneratorFunction: SmartSagaFootprint<any, any>) => {
   if (typeof target.decoratorRegisteredSagas === 'undefined') {
     target.decoratorRegisteredSagas = {};
   }

@@ -26,18 +26,19 @@ class DomainA extends Domain<DomainA_State/*, any*/> {
     /**
      * The action method returns with 'Action' to mock the return type
      */
-    @reducerAction('A/BLA', function(isCool: boolean) {
+    @reducerAction<DomainA>('A/BLA', function(isCool: boolean) {
         chai.expect(this).to.equals(
             domainA,
             '"this" must be the domain instance in the reducer which ' + 
             'is passed to the @reducerAction decorator.'
         );
+        return this.state;
     }) bla(isCool: boolean) { return Action(isCool); }
 
     /**
      * Set reducer
      */
-    @reducerAction('A/SET', function(payload: ModelA) {
+    @reducerAction<DomainA>('A/SET', function(payload: ModelA) {
         return Object.assign({}, this.state, {
             [payload.id]: payload,
         });
@@ -46,7 +47,7 @@ class DomainA extends Domain<DomainA_State/*, any*/> {
     /**
      * Unset reducer
      */
-    @reducerAction('A/UNSET', function(id: number) {
+    @reducerAction<DomainA>('A/UNSET', function(id: number) {
         let newState = Object.assign({}, this.state);
         delete newState[id];
         return newState;
@@ -55,7 +56,7 @@ class DomainA extends Domain<DomainA_State/*, any*/> {
     /**
      * Load something (saga)
      */
-    @sagaAction('A/LOAD', function*() {
+    @sagaAction<DomainA>('A/LOAD', function*(payload) {
         chai.expect(this).to.equals(
             domainA,
             '"this" must be the domain instance in the reducer which ' + 
@@ -68,7 +69,7 @@ class DomainA extends Domain<DomainA_State/*, any*/> {
     /**
      * Fetch something (saga)
      */
-    @sagaAction('A/FETCH', function*() {
+    @sagaAction<DomainA>('A/FETCH', function*(payload) {
         // ...
     }) fetch(id: number) {
         return Action(id);
@@ -187,7 +188,7 @@ describe('Domain instance (with store)', function() {
                 country: 'Switzerland',
             },
             meta: null,
-            error: null,
+            error: false,
         });
     });
     it('domainA.set(...).dispatch() - should execute the reducer and alter the store state.', function() {
@@ -209,7 +210,7 @@ describe('Domain instance (with store)', function() {
             type: 'A/BLA',
             payload: true,
             meta: null,
-            error: null,
+            error: false,
         });
     });
     it('domainA.bla(..).dispatchSync() - "this" must point to the domain instance in the reducer function', function() {

@@ -1,4 +1,4 @@
-import * as Qs from 'Qs'
+import Qs from 'Qs'
 import {
     AxiosError,
     AxiosInstance,
@@ -50,7 +50,7 @@ export type ApiRequestPoolOptions = {
   timeout?: number,
 
   /** (axios) The basic URL */
-  validateStatus?: null,
+  validateStatus?: (status: number) => boolean,
 
   /** (axios) Maximal redirects */
   maxRedirects?: number,
@@ -108,7 +108,7 @@ export default class ApiRequestPool {
     innerError?: Error,
     response?: AxiosResponse
   ) {
-    throw new RequestError(type, innerError || null, response || null);
+    throw new RequestError(type, innerError || undefined, response || undefined);
   }
 
   /**
@@ -164,7 +164,7 @@ export default class ApiRequestPool {
       postData = rawData;
     }
 
-    let cancelToken = null;
+    let cancelToken: CancelToken|null = null;
 
     if (mergedOptions.cancelPrev === true) {
       const uniqueRequestHash = this.options.uniqueRequestHasher({method, url, rawData});
@@ -218,7 +218,7 @@ export default class ApiRequestPool {
       onUploadProgress: (progressEvent: any) => {
         
       },
-      cancelToken,
+      cancelToken: cancelToken || undefined,
     };
 
     let result: AxiosResponse;
@@ -248,29 +248,31 @@ export default class ApiRequestPool {
     const end = (new Date).getTime();
     const duration = end - start;
 
-    this.options.logHandler({
-      url: result.config.url,
-      method: result.config.method as any,
-      data: result.config.data,
-      headers: result.config.headers,
-    }, {
-      body: result.data,
-      status: result.status,
-      headers: result.headers,
-    }, duration);
+    if (this.options.logHandler) {
+      this.options.logHandler({
+        url: result.config.url,
+        method: result.config.method as any,
+        data: result.config.data,
+        headers: result.config.headers,
+      }, {
+        body: result.data,
+        status: result.status,
+        headers: result.headers,
+      }, duration);
+    }
 
     const data = result.data;
 
     if (!(data instanceof Object)) {
-      this.throwRequestError('INVALID_RESPONSE_TYPE', null, result);
+      this.throwRequestError('INVALID_RESPONSE_TYPE', undefined, result);
     }
 
     if (isExpressJsProxyError(data)) {
-      this.throwRequestError('EXPRESS_PROXY_ERROR', null, result);
+      this.throwRequestError('EXPRESS_PROXY_ERROR', undefined, result);
     }
 
     if (!isValidResponseJsonStructure(data)) {
-      this.throwRequestError('INVALID_JSON_STRUCTURE', null, result);
+      this.throwRequestError('INVALID_JSON_STRUCTURE', undefined, result);
     }
 
     let apiResponse: ApiResponse = data;

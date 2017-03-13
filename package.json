@@ -39,9 +39,8 @@
     "qs": "^6.3.1"
   },
   "devDependencies": {
-    "@types/chai-as-promised": "^0.0.30",
-    "@types/axios": "^0.14.0",
     "@types/chai": "^3.4.35",
+    "@types/chai-as-promised": "^0.0.30",
     "@types/chalk": "^0.4.31",
     "@types/express": "^4.0.35",
     "@types/form-data": "^0.0.33",
@@ -79,7 +78,7 @@
     "flux-standard-action": "^1.2.0",
     "form-data": "^2.1.2",
     "generator-bind": "^1.0.1",
-    "immutable": "^3.8",
+    "immutable": "^4.0.0-rc.1",
     "karma-mocha-reporter": "^2.2.2",
     "karma-webpack": "^2.0.2",
     "mocha": "^3.2.0",

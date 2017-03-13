@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga'
 import { FSA } from 'flux-standard-action'
 import SmartReducer from '../../types/SmartReducer'
 
-export default <State>(target: any, actionType: string, reducerFunction: SmartReducer<any, any>) => {
+export default (target: any, actionType: string, reducerFunction: SmartReducer<any, any, any>) => {
   if (typeof target.decoratorRegisteredReducers === 'undefined') {
     target.decoratorRegisteredReducers = {};
   }
@@ -15,7 +15,7 @@ export default <State>(target: any, actionType: string, reducerFunction: SmartRe
   }
 
   target.decoratorRegisteredReducers[actionType] = 
-    function(state: any, action: FSA<any, any>): State {
+    function(state: any, action: any) {
       return reducerFunction.call(this, action.payload, action);
     };
 }

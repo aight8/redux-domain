@@ -30,7 +30,7 @@ abstract class Domain<StateType/*, RootStateType*/> {
   public get key(): string { return (this.constructor as any).key || this._key; }
   public set key(key: string) { this._key = key; }
 
-  public store: Store<any>/*<RootStateType>*/ = null;
+  public store: Store<any>|null = null; /*<RootStateType>*/
   public readonly defaultState: StateType;
 
   protected handlers: ActionReducerOrSagaMap;

@@ -5,8 +5,10 @@ import Domain from '../Domain'
 import Saga from '../types/Saga'
 import SmartSagaFootprint from '../types/SmartSagaFootprint'
 
-export default (actionType: string, sagaGeneratorFunction: SmartSagaFootprint<any>) => {
-  return (target: Domain<any>, key: string, descriptor: PropertyDescriptor) => {
+export default function<DomainT>
+  (actionType: string, sagaGeneratorFunction: SmartSagaFootprint<any, DomainT>)
+{
+  return function(target: Domain<any>, key: string, descriptor: PropertyDescriptor) {
     descriptor.value = createActionInterfaceCreator(target, actionType, descriptor.value);
     setActionSagaHandler(target, actionType, sagaGeneratorFunction);
     return descriptor;
