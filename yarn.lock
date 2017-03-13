@@ -2,12 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/axios@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
-  dependencies:
-    axios "*"
-
 "@types/chai-as-promised@^0.0.30":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/chai-as-promised/-/chai-as-promised-0.0.30.tgz#2341321cc796c6c3544a949a063e7609a222f303"
@@ -355,7 +349,7 @@ axios-mock-adapter@^1.8.1:
   dependencies:
     deep-equal "^1.0.1"
 
-axios@*:
+axios@^0.15.3:
   version "0.15.3"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.15.3.tgz#2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053"
   dependencies:
@@ -3869,42 +3863,42 @@ react@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-reactotron-core-client@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-1.7.0.tgz#834836c123987b301b37bb925036137e5b202849"
+reactotron-core-client@^1.7.0, reactotron-core-client@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-1.9.0.tgz#99fc8d02dc410d17f640fbb4b18d0a3c4272b3ad"
   dependencies:
     json-stringify-safe "^5.0.1"
     ramda "^0.23.0"
     ramdasauce "^1.2.0"
 
 reactotron-react-js@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/reactotron-react-js/-/reactotron-react-js-1.7.0.tgz#19eda857ff695602f46ff4261ae081da1505ed2c"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/reactotron-react-js/-/reactotron-react-js-1.9.0.tgz#c1c1b4ad95a94f942c719983eb32b44603728e47"
   dependencies:
     json-stringify-safe "^5.0.1"
     ramda "^0.23.0"
     ramdasauce "^1.2.0"
-    reactotron-core-client "^1.7.0"
+    reactotron-core-client "^1.9.0"
     socket.io-client "~1.7.1"
     stacktrace-js "^1.3.1"
 
 reactotron-redux-saga@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/reactotron-redux-saga/-/reactotron-redux-saga-1.7.0.tgz#2bdc5471029a2184de7d2b2ee283dc5786caca9b"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/reactotron-redux-saga/-/reactotron-redux-saga-1.9.0.tgz#1d1cd692f9ce46c2553e64a78e6d3c9a1a0ebe5c"
   dependencies:
     ramda "^0.23.0"
     ramdasauce "^1.2.0"
-    reactotron-core-client "^1.7.0"
+    reactotron-core-client "^1.9.0"
     redux "^3.6.0"
     redux-saga "^0.14.0"
 
 reactotron-redux@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/reactotron-redux/-/reactotron-redux-1.7.0.tgz#8725f8d54a9e53e523316a07b15226557b3a79a5"
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/reactotron-redux/-/reactotron-redux-1.9.0.tgz#f3a5b21b718e51b6501cf70e6833aa1956ec88a0"
   dependencies:
     ramda "^0.23.0"
     ramdasauce "^1.2.0"
-    reactotron-core-client "^1.7.0"
+    reactotron-core-client "^1.9.0"
     redux "^3.6.0"
 
 read-pkg-up@^1.0.1:
