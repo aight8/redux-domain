@@ -136,8 +136,15 @@ describe('Domain instance (no store set)', function() {
             'A/FETCH',
             'A/LOAD',
         ]);
-        //const GeneratorFunctionConstructor = (function*() {}).constructor;
         chai.expect(domainASagas['A/FETCH']).instanceof(Function);
+    });
+    it('the @reducerAction decorated action method contains the "actionType" property (toString returns the same)', function() {
+        chai.expect(domainA.set.toString()).equals('A/SET');
+        chai.expect((domainA.set as any).actionType).equals('A/SET');
+    });
+    it('the @sagaAction decorated action method contains the "actionType" property (toString returns the same)', function() {
+        chai.expect(domainA.fetch.toString()).equals('A/FETCH');
+        chai.expect((domainA.fetch as any).actionType).equals('A/FETCH');
     });
 });
 
