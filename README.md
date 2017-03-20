@@ -1,4 +1,4 @@
-# redux-domain
+# redux-domain (WIP)
 
 > Manage your redux store, reducers, sagas in domains.
 
