@@ -1,11 +1,11 @@
 import isGenerator from './decorators/internal/isGenerator'
-import { SagaIterator } from 'redux-saga'
 import ActionSagaMap from './types/ActionSagaMap'
 import ActionReducerMap from './types/ActionReducerMap'
 import ActionReducerOrSagaMap from './types/ActionReducerOrSagaMap'
 import { Store } from 'redux'
 import pickBy from './utils/pickBy'
 import createBadUsageError from './errors/createBadUsageError'
+import SagaIterator from 'types/SagaIterator'
 import * as genbind from 'generator-bind'
 
 function createKeyRequiredError(methodName: string) {
@@ -24,6 +24,10 @@ function createStoreRequiredError(methodName: string) {
   );
 }
 
+interface Domain<StateType> {
+  startupSaga(input: string): SagaIterator;
+}
+
 abstract class Domain<StateType/*, RootStateType*/> {
   public static key: string;
   private _key: string;
@@ -31,9 +35,10 @@ abstract class Domain<StateType/*, RootStateType*/> {
   public set key(key: string) { this._key = key; }
 
   public store: Store<any>|null = null; /*<RootStateType>*/
-  public readonly defaultState: StateType;
+  public readonly defaultState: StateType = null;
 
   protected handlers: ActionReducerOrSagaMap;
+  public readonly actionNamespace: string; // static?
 
   // private decoratorRegisteredReducers = {};
   // private decoratorRegisteredSagas = {};
@@ -91,9 +96,7 @@ abstract class Domain<StateType/*, RootStateType*/> {
       throw createKeyRequiredError('getAllReducers');
     }
     return {
-      ['@@' + this.key + '/RESET']: () => { // Built in reset reducer
-        return this.defaultState;
-      },
+      ['@@' + this.key + '/RESET']: () => this.defaultState, // Built in reset reducer
       ...pickBy(this.handlers, h => !isGenerator(h)),
       ...(this as any).decoratorRegisteredReducers,
     };
@@ -104,6 +107,9 @@ abstract class Domain<StateType/*, RootStateType*/> {
    */
   public getAllSagas(): ActionSagaMap {
     return {
+      ...(typeof this.startupSaga === 'function' ? {
+        '@@STARTUP': this.startupSaga, // maybe this shoud be defined in this.handlers by the user?
+      }: {}),
       ...pickBy(this.handlers, isGenerator),
       ...(this as any).decoratorRegisteredSagas,
     };

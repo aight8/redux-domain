@@ -16,7 +16,9 @@ export default (
 
       domainLevelReducer[domainKey] = handleActions(
         domainReducers,
-        domainDefaultStates[domainKey],
+        domainDefaultStates[domainKey] || null,
+        // Domain.defaultState is already null if not defined but make sure for other use cases,
+        // because `undefined` throws an exception
       );
     }
 

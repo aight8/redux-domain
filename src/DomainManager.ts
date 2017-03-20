@@ -33,7 +33,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Public access to the root state
    */
-  public get rootState(): RS {
+  public get rootState(): RS { // @TODO: maybe remove this from here?
     if (!this.store) {
       throw createBadUsageError(
         `The DomainManager rootState getter requires a set 'store' property.`
@@ -45,7 +45,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Built in reset functionality
    */
-  resetAllStores(): void {
+  public resetAllStores(): void { // @TODO: maybe remove this from there?
     Object.keys(this.domains).forEach(domainKey => {
       const domain = this.domains[domainKey];
       domain.resetStore();
@@ -55,7 +55,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Collector method: Return all reducers from all domains
    */
-  getReducers() {
+  public getReducers() {
     let domainActionReducerMap: DomainKeyActionReducerMap = {};
 
     for (let domainKey in this.domains) {
@@ -69,7 +69,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Collector method: Return all default states from all domains
    */
-  getDefaultStates(): DomainKeyDefaultStateMap {
+  public getDefaultStates(): DomainKeyDefaultStateMap {
     let domainDefaultStates: DomainKeyDefaultStateMap = {};
 
     for (let domainKey in this.domains) {
@@ -83,7 +83,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Collector method: Return all sagas from all domains
    */
-  getSagas(): ActionSagaDefinitions {
+  public getSagas(): ActionSagaDefinitions {
     let actionSagaDefinitions: ActionSagaDefinitions = [];
 
     for (let domainKey in this.domains) {

@@ -1,8 +1,8 @@
 import Domain from '../Domain'
 import { createSelectorCreator, createSelector, Selector, defaultMemoize } from 'reselect'
 
-type SmartInputSelector<Context> = (this: Context, state, props: any) => any;
-type SmartInputSelectors<Context> = SmartInputSelector<Context>[];
+export type SmartInputSelector<Context> = (this: Context, state, props: any) => any;
+export type SmartInputSelectors<Context> = SmartInputSelector<Context>[];
 
 export default function<DomainT extends Domain<any>>
   (contextualInputSelectors: SmartInputSelectors<DomainT>, combiner: Function)
