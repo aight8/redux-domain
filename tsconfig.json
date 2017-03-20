@@ -11,7 +11,9 @@
         "experimentalDecorators": true,
         "baseUrl": "./src",
         "outDir": "./es",
-        "removeComments": true
+        "removeComments": true,
+        "declaration": true,
+        "declarationDir": "type-definition"
     },
     "include": [
         "./src"
