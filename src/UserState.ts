@@ -244,6 +244,13 @@ export default class UserStore<DM extends DomainManager<any, any>> {
     }
 
     /**
+     * Domains map. Shortcut to: userState.domainManager.resetAllStates
+     */
+    public resetAllStates() {
+        this.domainManager.resetAllStates();
+    }
+
+    /**
      * Run the configured root saga from the options.
      */
     public startRootSaga() {

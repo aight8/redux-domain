@@ -45,10 +45,10 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
   /**
    * Built in reset functionality
    */
-  public resetAllStores(): void { // @TODO: maybe remove this from there?
+  public resetAllStates(): void { // @TODO: maybe remove this from there?
     Object.keys(this.domains).forEach(domainKey => {
       const domain = this.domains[domainKey];
-      domain.resetStore();
+      domain.resetState();
     });
   }
 

@@ -78,7 +78,7 @@ abstract class Domain<StateType/*, RootStateType*/> {
   /**
    * Reset the domain state to the default state
    */
-  public resetStore(): void {
+  public resetState(): void {
     if (!this.store) {
       throw createBadUsageError('Cannot reset store because no store was bound to domain.');
     }
