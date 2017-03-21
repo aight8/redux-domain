@@ -7,47 +7,112 @@
 [![NPM downloads](https://img.shields.io/npm/dm/redux-domain.svg)](https://npmjs.org/package/redux-domain)
 [![NPM version](https://img.shields.io/npm/v/redux-domain.svg)](https://npmjs.org/package/redux-domain)
 
-```redux-domain``` provide functionality to work with redux in a DRY manner.
-The top level "User State" contains everything which is needed for a particular user session.
-Because it is an new object it can be used on client side and server side.
+redux-domain was created to get rid of the cluttered redux project structure. It improves the productivity massively by solving dozens of problems by design, which the most redux developer is fighting against sooner or later. A lot of API variation are tried out, redux-ace and many other libraries was observed heavily. redux-domain is the result of this research.
 
-## Object functionalities
+It was from ground up designed to work well in TypeScript and flow. Some design decisions were made to support those static analysers completely.
 
-### UserState
-- **store** (redux)
-  - **reducer**
-  - **enhancers / middlewares**
-  - **root initialState** (ex: provided by prerendered page)
-- **sagaMiddleware**
-- **rootSaga**
+## Concept
 
-See [UserState examples](a) / [UserState API](a)
+Many ```Domain``` -> ```DomainManager``` -> ```UserState```
 
-### DomainManager
-- **get reducers** from all domains
-- **get sagas** from all domains
-- **reset store** to defaultState
+You implement as many ```Domain``` subclasses as you need. All of them contains all the functionality which the particular part of your application needs. All domains will get passed to the ```DomainManager``` which acts as a container to access your domains and fetch the registered **reducers**, **sagas** and the **default state** of all domains.
+Until now, no state exists at all. The ```UserState``` creates a populated redux store (using ```combineReducers``` and ```handleActions``` from redux/redux-actions) with a redux-saga middleware.
 
-See [DomainManager examples](a) / [DomainManager API](a)
+## Overview
 
-### Domain (abstract class)
-- **defaultState** (for the domain sub state)
-- *action methods* (use @reduxAction, @sagaAction or @action)
-- *selector methods* (no decorators, just access ```this.state```/```this.rootState```)
-- **dispatch actions**
-- **dispatch actions sync** (ex: for redux-form)
+First a small overview about the object types for orientation.
+
+### Domains
+**Domains** are classes which extend the base ```Domain``` class. They implement **action methods** and **selector methods** to altering and fetching the domains state.
 
 See [Domain examples](a) / [Domain API](a)
 
----
+### DomainManager
+**DomainManager** provides functions to collect all **reducers**, **sagas** and **default states** from all domains. It referencing it's own store to the domains.
 
-# Undearneath
-This library uses some packages. To understand how it works underneath here the summary:
+See [DomainManager examples](a) / [DomainManager API](a)
 
-**redux** - Uses exports: applyMiddleware, combineReducers, compose, createStore, ~~bindActionCreators~~
+### UserState
+**UserState** is a very flexibel implementation how to implement the domain manager. It is an isolated object which could initialized as often you want. It creates the redux store with the saga middleware and run the root saga. **All requirements** are fetched through the domain managers API.
+It provides an interface to interact with the created root saga.
 
-**reduc-actions** - Uses exports: ~~combineActions~~, ~~createAction~~, ~~createActions~~, ~~handleAction~~, handleActions
+It options allows to:
+- Integrates common dev tools easily (**DevTools browser extension**, **Reactotron**)
+- Set the redux preloaded state
+- Define additional store middlewares and enhancers
 
+See [UserState examples](a) / [UserState API](a)
+
+# Demo
+
+Before we go into detail, just try to understand the following demo (using immutable as sub state):
+
+## 1. Definition
+
+```JS
+import { Domain, reduxAction, sagaAction } from 'redux-domain'
+import { Map } from 'immutable'
+import { call, put } from 'redux-saga/effects'
+import MyApplicationApi from '../api/my-application-api'
+
+type Product = Map<>;
+
+class ProductDomain extends Domain<Product> {
+   defaultState: Map()
+   actionNamespace: "PRODUCT"
+
+   *startupSaga() {
+       const products = yield call(MyApplicationApi.getCommonProducts, id)
+       for (let i in products) {
+         yield put(this.set(products[i]).action)
+       }
+   }
+
+   @reduxAction<ProductDomain>('SET',  function(user) {
+      return this.state.set(user.id, user)
+   })
+   set(user) {
+      return user;
+   }
+
+   @sagaAction<ProductDomain>('FETCH', function*(id) {
+      const product = yield call(MyApplicationApi.getProduct, id)
+      yield put(this.set(product).action)
+   })
+   fetch(id) {
+       return id;
+   }
+}
+
+const dm = new DomainManager({
+   product: new ProductDomain()
+})
+
+const userState = new UserState(dm)
+```
+
+## 2. Using
+
+```JS
+await userState.finalizeRootSaga() // -> Promise
+
+userState.domains.product.resetStore() // -> void
+
+userState.domains.product.set.actionType // -> The redux action action type
+userState.domains.product.fetch.actionType // -> The redux action action type
+
+const setAction = userState.domains.product.set({ id: 15, name: 'Apple' }); // -> ActionInterface
+setAction.dispatch() // -> void
+setAction.dispatchSync() // -> Promise
+setAction.action // -> The built redux action object
+
+const fetchAction = userState.domains.product.fetch(15) // -> ActionInterface
+fetchAction.dispatch() // -> void
+fetchAction.dispatchSync() // -> Promise
+fetchAction.action // -> The built redux action object
+
+userState.resetStore();
+```
 
 # Other benefits
 
@@ -73,19 +138,6 @@ A domain contain following:
   - The defaultState should be Typed
   - Built in action/reducer to reset the domain state to the initial state anytime
 
-### Domain members
-
-|                |                                          |                    |
-| -------------- | ---------------------------------------- | ------------------ |
-| state          | Return the current domain state (**store** required) | getter |
-| rootState      | Return the current root state (**store** required) | getter   |
-| store          | The redux store object                   | getter/setter      |
-| defaultState   | The default state of the domains store   | **static** object  |
-| key            | The key of the domain store              | **static** string  |
-| handlers       | Additional handler which should be registerd. | object        |
-| resetStore     | Resets the store to **defaultState**     | function           |
-| getAllReducers | Returns all reducers of this domain      | function           |
-| getAllSagas    | Returns all sagas of this domain         | function           |
 
 ### Type of methods
 
@@ -102,46 +154,6 @@ Usable decorators: **@action** + optionally **@reducer** or **@saga**
 Accepts custom defined arguments and return values from the store
 
 It requires no decorators, it's a simple method which uses ```this.state``` or ```this.rootState``` to fetch some values.
-
-#### Reselect selector
-
-If use **@reselect** decorator the method receives all values gattered by inputSelectors in **@reselect** and it must return the final result.
-
-**this** is undefined.
-
-### Decorators
-
-#### @reselect(inputSelectors: [] = [state => state], useRootState)
-
-The method received the results of all input selectors and it should return the final calculated result.
-
-#### @action(actionType: string)
-
-Defines the action type of this method.
-
-#### @reducer(reducer: (state: T, payload: {}) => {})
-
-**<u>reducer</u>**: **this** is the member instance of the domain
-
-#### @saga(saga: Generator<*, *, *>)
-
-**<u>saga</u>**: **this** is the member instance of the domain
-
-# The DomainBundle
-
-The domain bundle contain all domain instances for the application
-All domains must be passed in the constructor once and the domains cannot be modified once set.
-The main reason for this is:
-- Ensure well covered flow support
-- Transparent code design with a central point of configuration without surprises
-
-```JS
-const createStore(() => {}, {});
-
-const domainBundle = new DomainBundle({
-  domainA: new DomainA(),
-}, store);
-```
 
 # Using actions
 

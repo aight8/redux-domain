@@ -12,9 +12,9 @@ It provides the basic functionality for domains.
 | Prefix | Method | Description |
 | --- | --- | --- |
 | public | ```constructor()``` | No parameters. |
-| public | ```getAllReducers(): ActionReducerMap``` | This method can be used to get all reducers of the domain. It is called by the DomainManager on all domain instances.<br>*Notes: Beside of the own reducers one additional reducer is added: ```'@@' + this.key + '/RESET'``` - this reducer is used by ```resetStore``` and resets the store to the specified ```defaultState```* |
+| public | ```getAllReducers(): ActionReducerMap``` | This method can be used to get all reducers of the domain. It is called by the DomainManager on all domain instances.<br>*Notes: Beside of the own reducers one additional reducer is added: ```'@@' + this.key + '/RESET'``` - this reducer is used by ```resetState``` and resets the store to the specified ```defaultState```* |
 | public | ```getAllSagas(): ActionSagaMap``` | This method can be used to get all sagas of the domain. It is called by the DomainManager on all domain instances. |
-| public | ```resetStore(): void``` | **store property must be set from outside.**<br>This method dispatches an action of type ```'@@' + this.key + '/RESET'``` which reset the current domain state to ```defaultState```. The particular reducer is contained in ```getAllReducers```. |
+| public | ```resetState(): void``` | **store property must be set from outside.**<br>This method dispatches an action of type ```'@@' + this.key + '/RESET'``` which reset the current domain state to ```defaultState```. The particular reducer is contained in ```getAllReducers```. |
 
 ## Properties
 
@@ -29,13 +29,14 @@ It provides the basic functionality for domains.
 
 ## Method decorators
 
+Below is a table which document all available decorators which can be used.
+Every of them affects that the original method returns an **ActionInterface**
+
 | Decorator | Description |
 | --- | --- |
-| ```action<T>(actionType: string):ActionInterfaceCreator``` | Wraps the **action method**, arguments stays the same but the method becomes an **ActionInterface**. The decorated method returns one of: 1. Any value which becomes the payload<br>2. ```return Action(payload, meta, error)``` which allows it to set more than the payload. The ```type``` is set automatically.<br>If you use **Typescript or Flow** you should **always** return with ```Action``` because it mocks the ```ActionInterface``` as workaround - until flow/ts does not support method signature overriding. Otherwise you must cast the return value - this is ugly or you can forget it. |
-| ```sagaAction<T>(actionType: string, saga: Saga): T``` | ```sagaAction``` decorated an **action method**.<br>It defines **an action type** and a **saga** which handles it.<br>This is a shortcut of using the ```@action``` and ```@saga``` decorator together and is the recommended usage. |
-| ```reducerAction<T>(actionType: string, reducer: SmartReducer):T``` | ```reducerAction``` decorates an **action method**.<br>It defines **an UNIQUE action type** and a **reducer** which handles it.<br>This is a shortcut of using the ```@action``` and ```@reducer``` decorator together and is the recommended usage. |
-| ```reducer<T>(reducer: SmartReducer):T``` | The ```@reducer``` decorator register a **reducer** to the decorated action method.<br>Important: It requires a preceding ```@action``` decorator however ```@reducerAction``` should be used instead! |
-| ```saga<T>(saga: Saga):T``` | The ```@saga``` decorator register a **saga** to the decorated action method.<br>Important: It requires a preceding ```@action``` decorator however ```@sagaAction``` should be used instead! |
+| ```action<T>(actionType)``` | Wraps the **action method**, arguments stays the same but the method becomes an **ActionInterface**. The decorated method returns one of: 1. Any value which becomes the payload<br>2. ```return Action(payload, meta, error)``` which allows it to set more than the payload. The ```type``` is set automatically.<br>If you use **Typescript or Flow** you should **always** return with ```Action``` because it mocks the ```ActionInterface``` as workaround - until flow/ts does not support method signature overriding. Otherwise you must cast the return value - this is ugly or you can forget it. |
+| ```sagaAction<T>(actionType, SmartSaga)``` | ```sagaAction``` decorated an **action method**.<br>It defines **an action type** and a **saga** which handles it.<br>This is a shortcut of using the ```@action``` and ```@saga``` decorator together and is the recommended usage. |
+| ```reducerAction<T>(actionType, SmartReducer)``` | ```reducerAction``` decorates an **action method**.<br>It defines **an UNIQUE action type** and a **reducer** which handles it.<br>This is a shortcut of using the ```@action``` and ```@reducer``` decorator together and is the recommended usage. |
 
 ## Additional relevant classes/functions
 
@@ -54,7 +55,7 @@ class ActionInterface<Payload, Meta> {
 }
 
 // The second argument of @sagaAction (or the first of @saga)
-type SmartSagaFootprint<Payload> = (payload?: Payload, action?: FluxStandardAction<Payload, any>) => SagaIterator;
+type SmartSaga<Payload> = (payload?: Payload, action?: FluxStandardAction<Payload, any>) => SagaIterator;
 
 // The second argument of @reducerAction (or the first of @reducer)
 type SmartReducer<State, Payload> = (payload?: Payload, action?: FSA<Payload, any>) => State;
@@ -81,7 +82,7 @@ interface ActionReducerOrSagaMap {
 Normally you just implement a domain and pass it with all other domains to the **DomainManager** constructor.
 
 To **dispatch actions** or **access the store** we have to set the store manually in this example.
-Additionally the ```key``` static property should be set (it is however only used by ```state``` getter property, ```getAllReducers``` and ```resetStore``` methods).
+Additionally the ```key``` static property should be set (it is however only used by ```state``` getter property, ```getAllReducers``` and ```resetState``` methods).
 
 We skip examples with ```@reducer``` and ```@saga``` decorators because it has the same signature than the combined ```@reducerAction``` or ```@sagaAction``` but without the **action type** argument.
 
@@ -146,7 +147,7 @@ testDomain.theActionMethod('myparam1', 123, 'param3').dispatch();
 testDomain.theActionMethod('myparam1', 123, 'param3').dispatchSync().then(...).catch(...);
 testDomain.theActionMethod('myparam1', 123, 'param3').action; // The created action how it will dispatched
 
-testDomain.resetStore(); // Built-in action and reducer to reset the state to defined defaultState
+testDomain.resetState(); // Built-in action and reducer to reset the state to defined defaultState
 testDomain.getAllReducers(); // Collects all reducers (used by DomainManager)
 testDomain.getAllSagas(); // Collects all sagas (used by DomainManager)
 testDomain.defaultState; // The set default state
@@ -212,17 +213,14 @@ function(payload, action) {
 
 ### Typescript (just leave the typescript specific annotations away in pure JS)
 ```JS
-import {
-    Domain,
-    reducerAction,
-    sagaAction,
-    Action
-} from 'redux-domain'
+import { Domain, reducerAction, sagaAction, Action } from 'redux-domain'
 
-class DomainA extends Domain {
+type State = any;
+
+class DomainA extends Domain<State> {
   static defaultState = {};
 
-  @reducerAction('DOMAIN_A/SET', function(state, payload) {
+  @reducerAction<DomainA>('DOMAIN_A/SET', function(state, payload) {
     // ...
     return newState;
   })
@@ -230,7 +228,7 @@ class DomainA extends Domain {
     return data;
   }
 
-  @sagaAction('DOMAIN_A/FETCH', function*(payload) {
+  @sagaAction<DomainA>('DOMAIN_A/FETCH', function*(payload) {
     // ...
     const user = yield call(fetchUser);
     yield this.set();
