@@ -1,5 +1,5 @@
 import { Middleware, Reducer, Store, StoreEnhancer } from 'redux';
-import { SagaIterator } from 'redux-saga';
+import { SagaIterator, Task } from 'redux-saga';
 import DomainManager from './DomainManager';
 export interface UserStoreOptions {
     reducer?: Reducer<any>;
@@ -11,15 +11,24 @@ export interface UserStoreOptions {
     rootSaga?: () => SagaIterator;
 }
 export default class UserStore<DM extends DomainManager<any, any>> {
-    readonly domainManager: DM;
     private options;
+    readonly domainManager: DM;
     readonly store: Store<any>;
-    private sagaMiddleware;
-    private sagaRootTask;
+    private _sagaMiddleware;
+    private _rootSagaTask;
     constructor(domainManager: DM, options?: UserStoreOptions);
     private static generateOptionsByDomainManager(domainManager);
-    teeeest(): void;
-    readonly rootState: any;
+    readonly rootSagaTask: Task;
+    readonly state: any;
+    readonly domains: any;
+    resetAllStates(): void;
     startRootSaga(): void;
-    finalizeSaga(restart?: boolean): Promise<any>;
+    finalizeRootSaga(restart?: boolean): Promise<any>;
+    getRootSagaStatus(): {
+        running: boolean;
+        cancelled: boolean;
+        error: any;
+        result: any;
+        toString(): string;
+    };
 }

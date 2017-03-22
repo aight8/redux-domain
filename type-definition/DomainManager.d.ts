@@ -11,7 +11,7 @@ export default class DomainManager<T extends KeyDomainMap, RS extends RootState<
     store: Store<any>;
     constructor(domains: T);
     readonly rootState: RS;
-    resetAllStores(): void;
+    resetAllStates(): void;
     getReducers(): DomainKeyActionReducerMap;
     getDefaultStates(): DomainKeyDefaultStateMap;
     getSagas(): ActionSagaDefinitions;
