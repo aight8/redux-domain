@@ -1,6 +1,6 @@
 {
   "name": "redux-domain",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "./es/index.js",
   "typings": "./type-definitions",
   "module": "./es/index.js",
@@ -27,7 +27,9 @@
     "url": "https://github.com/aight8/redux-domain/issues"
   },
   "scripts": {
-    "build:es": "rimraf es && rimraf type-definitions && tsc --module es6",
+    "build": "yarn build:es && yarn build:lib",
+    "build:es": "rimraf es && rimraf type-definitions && tsc -p tsconfig.json",
+    "build:lib": "rimraf lib && tsc -p tsconfig.lib.json",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register ./test/**.ts",
     "docs": "yarn docs:clear && yarn docs:prepare && yarn docs:build",
     "docs:clear": "rimraf _book",

@@ -4,16 +4,14 @@
     "strictNullChecks": false,
     "pretty": true,
     "sourceMap": false,
-    "module": "es2015",
+    "module": "amd",
     "target": "es6",
-    "jsx": "preserve",
+    "jsx": "react",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "baseUrl": "./src",
-    "outDir": "./es",
-    "removeComments": true,
-    "declaration": true,
-    "declarationDir": "type-definitions"
+    "outDir": "./lib",
+    "removeComments": true
   },
   "include": [
     "./src"
