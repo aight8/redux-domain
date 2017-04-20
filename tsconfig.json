@@ -1,21 +1,21 @@
 {
-    "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "strictNullChecks": false,
-        "pretty": true,
-        "sourceMap": false,
-        "module": "commonjs",
-        "target": "es6",
-        "jsx": "react",
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "baseUrl": "./src",
-        "outDir": "./es",
-        "removeComments": true,
-        "declaration": true,
-        "declarationDir": "type-definition"
-    },
-    "include": [
-        "./src"
-    ]
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
+    "pretty": true,
+    "sourceMap": false,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "outDir": "./es",
+    "removeComments": true,
+    "declaration": true,
+    "declarationDir": "type-definitions"
+  },
+  "include": [
+    "./src"
+  ]
 }

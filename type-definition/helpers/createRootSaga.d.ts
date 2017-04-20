@@ -1,4 +1,0 @@
-import ActionSagaDefinition from '../types/ActionSagaDefinition';
-import { Effect, effects } from 'redux-saga';
-declare var _default: (sagas: ActionSagaDefinition[], additionalForks?: IterableIterator<effects.TakeEffect<any> | effects.PutEffect<any> | effects.RaceEffect | effects.CallEffect | effects.CpsEffect | effects.ForkEffect | effects.JoinEffect | effects.CancelEffect | effects.SelectEffect | effects.ActionChannelEffect<any> | effects.CancelledEffect | Effect[]>[]) => () => IterableIterator<IterableIterator<effects.TakeEffect<any> | effects.PutEffect<any> | effects.RaceEffect | effects.CallEffect | effects.CpsEffect | effects.ForkEffect | effects.JoinEffect | effects.CancelEffect | effects.SelectEffect | effects.ActionChannelEffect<any> | effects.CancelledEffect | Effect[]>>;
-export default _default;
